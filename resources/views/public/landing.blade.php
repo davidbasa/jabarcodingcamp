@@ -5,7 +5,7 @@
     <div class="col-md-8 p-sm-2 p-lg-5 mx-auto my-5 banner">
         <h1 class="display-4 fw-normal title">Jabar Bangkit Bersama</h1>
         <p class="lead fw-normal">Jadilah bagian dari gerakan sosial menyebarkan kebahagaiaan ke segala penjuru jawa barat.</p>
-        <a class="btn btn-success btn-lg" href="#"><i class="fa-solid fa-hand-holding-heart text-white"></i> Mulai Berdonasi</a>
+        <a class="btn btn-success btn-lg" href="{{ route('campaign.list') }}"><i class="fa-solid fa-hand-holding-heart text-white"></i> Mulai Berdonasi</a>
     </div>
 </div>
 
@@ -34,12 +34,11 @@
                         <span class="total-donation">Rp 15.000.000</span>
                         <small class="text-muted">99</small>
                     </div>
-                    
-                    <div class="d-grid mt-3">
+                    <a href="{{ route('campaign.detail', 'contoh') }}" class="d-grid mt-3">
                         <button class="btn btn-success btn-sm text-center">
                             Donasi Sekarang
                         </button>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -127,9 +126,11 @@
                     </div>
                     
                     <div class="d-grid mt-3">
-                        <button class="btn btn-success btn-sm text-center">
-                            Donasi Sekarang
-                        </button>
+                        <a href="{{ route('campaign.detail', 'contoh') }}">
+                            <button class="btn btn-success btn-sm text-center">
+                                Donasi Sekarang
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
