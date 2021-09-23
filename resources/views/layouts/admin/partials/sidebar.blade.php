@@ -36,7 +36,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="/admin-area/payment" class="nav-link">
 							<i class="far fa-credit-card nav-icon"></i>
 							<p>Metode Pembayaran</p>
 						</a>
@@ -50,7 +50,7 @@
 					</li>
 					<li class="nav-header">Admin Area</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="/admin-area/user" class="nav-link">
 							<i class="fas fa-users-cog nav-icon"></i>
 							<p>Manajemen User</p>
 						</a>
