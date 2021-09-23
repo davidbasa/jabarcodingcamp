@@ -1,19 +1,19 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+namespace Database\Seeders;
 
-class InsertDefaultAccountToUsersTable extends Migration
+use Illuminate\Database\Seeder;
+
+use DB, Hash;
+
+class SeedTableUser extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      *
      * @return void
      */
-    public function up()
+    public function run()
     {
         DB::table('users')->insert([
             [
@@ -34,17 +34,5 @@ class InsertDefaultAccountToUsersTable extends Migration
                 'created_at' => date('Y-m-d H:i:s')
             ]
         ]);
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
     }
 }
