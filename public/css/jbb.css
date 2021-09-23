@@ -1,7 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700&display=swap');
 
 * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(54, 54, 54);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #F8F9FA;
 }
 
 .jbb-navbar {
@@ -13,4 +21,86 @@
 
 main {
     background-color: #F8F9FA;
+}
+
+.nav-item {
+    display: flex;
+}
+
+.nav-item * {
+    margin: auto 0px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: rgb(90, 90, 90);
+    font-size: small;
+    font-weight: 600;
+}
+
+.nav-link:hover {
+    color: #157347 !important;
+}
+
+.campaign-title {
+    font-weight: 700;
+}
+
+.total-donation {
+    font-weight: 700;
+}
+
+.card-campaign {
+    border-radius: 12px;
+}
+
+.card-campaign img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.campaign-category a {
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+}
+
+.title {
+    font-weight: 800 !important;
+}
+
+.banner {
+    background-image: url('https://majalahcsr.id/wp-content/uploads/2020/05/Donasi1.jpg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: auto 100%;
+}
+
+.banner-image {
+    max-width: 300px;
+}
+
+footer {
+    background-color: #157347;
+    margin-top: auto;
+}
+
+footer * {
+    color: white !important;
+}
+
+footer .nav a {
+    text-decoration: none;
+    color: white !important;
+    font-size: small;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 400px) {
+    .jbb-navbar {
+        background-color: rgba(255,255,255,1) !important;
+    }
+
+    .banner-image {
+        max-width: 250px;
+    }
 }

@@ -15,9 +15,10 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::view('/', 'public.landing')->name('index');
+
+Route::view('tentang-kami', 'public.aboutus')->name('aboutus');
+Route::view('hubungi-kami', 'public.contactus')->name('contactus');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
@@ -27,6 +28,9 @@ Route::prefix('/admin-area')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
 });
 
-Route::prefix('/donatur-area')->middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'donatur']);
+Route::prefix('/donatur-area')
+    ->middleware('auth')
+    ->as('donatur.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'donatur'])->name('dashboard');
 });
