@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>JCC - Laravel - Hari 13 - Esa</title>
+	<title>Jabar Bangkit Bersama</title>
 
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -11,15 +11,14 @@
 	<link rel="stylesheet" href=" {{ asset('plugins/fontawesome-free/css/all.min.css') }}">
 	<!-- Theme style -->
 	<link rel="stylesheet" href=" {{ asset('css/adminlte.min.css') }}">
-
 	@stack('head')
-
 </head>
 <body class="hold-transition sidebar-mini">
+	@include('sweetalert::alert')
 	<!-- Site wrapper -->
 	<div class="wrapper">
-		@include('layout.partials.header')
-		@include('layout.partials.sidebar')
+		@include('layouts.admin.partials.header')
+		@include('layouts.admin.partials.sidebar')
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<section class="content-header">
@@ -36,7 +35,7 @@
 			</section>
 		</div>
 		<!-- /.content-wrapper -->
-		@include('layout.partials.footer')
+		@include('layouts.admin.partials.footer')
 	</div>
 	<!-- ./wrapper -->
 	<!-- jQuery -->

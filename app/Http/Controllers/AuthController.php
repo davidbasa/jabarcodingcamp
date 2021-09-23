@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-// use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -34,14 +34,14 @@ class AuthController extends Controller
         
         if (Auth::check()) { 
             Auth::logoutOtherDevices($request->password);
-            // Alert::toast('Selamat Datang di Jabar Bangkit Bersama!','success')->width('500px');
+            Alert::toast('Selamat Datang di Jabar Bangkit Bersama!','success')->width('500px');
             if (Auth::user()->role_id == 1) {
                 return redirect('/admin-area/dashboard');
             } else {
                 return redirect('/donatur-area/dashboard');
             }
         } else { 
-            // Alert::error('Login gagal!', 'Email atau password salah!');
+            Alert::error('Login gagal!', 'Email atau password salah!');
             return redirect('/login');
         }
     }
@@ -49,7 +49,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        // Alert::toast('Anda telah logout dari aplikasi Jabar Bangkit Bersama!','info')->width('500px');
+        Alert::toast('Anda telah logout dari aplikasi Jabar Bangkit Bersama!','info')->width('500px');
         return redirect('/login');
     }
 }

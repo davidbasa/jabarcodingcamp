@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition login-page">
+	@include('sweetalert::alert')
 <div class="login-box">
 	<div class="login-logo">
 		<strong>Jabar Bangkit Bersama</strong>
