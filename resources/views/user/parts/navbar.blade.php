@@ -7,25 +7,18 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Beranda</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('donatur.dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('campaign.list') }}">Program Donasi</a>
+                    <a class="nav-link" href="{{route('donatur.donasi')}}">Donasi Saya</a>
+                </li>
+                <li class="nav-item" style="margin-right: 50px;">
+                    <a class="nav-link" href="{{route('donatur.profile')}}">Profil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('aboutus') }}">Tentang Kami</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contactus') }}">Hubungi Kami</a>
-                </li>
-                <li class="nav-item">
-                    @if(auth()->check())
-                        <a href="{{ route('donatur.dashboard') }}">
-                            <button class="btn btn-success btn-sm">User Area</button>
-                        </a>
-                    @else
-                    <button class="btn btn-success btn-sm">Login/Daftar</button>
-                    @endif
+                    <a href="{{ route('donatur.dashboard') }}">
+                        <button class="btn btn-danger btn-sm">Keluar</button>
+                    </a>
                 </li>
             </ul>
         </div>
