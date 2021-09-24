@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoriesController;
@@ -42,14 +44,26 @@ Route::prefix('/admin-area')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
     Route::resource('/categories', CategoriesController::class);
     Route::resource('/campaign', CampaignController::class);
+    
+    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/{user_id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{user_id}', [UserController::class, 'update'])->name('user.update');
+
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
+    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment',[PaymentController::class, 'store'])->name('payment.store');
+    Route::get('payment/{payment_id}/edit', [PaymentController::class, 'edit'])->name('payment.edit');
+    Route::put('/payment/{payment_id}', [PaymentController::class, 'update'])->name('payment.update');
+    Route::delete('/payment/{payment_id}',[PaymentController::class, 'destroy'])->name('payment.delete');
 });
 
 Route::prefix('/donatur-area')
     ->middleware('auth')
     ->as('donatur.')
     ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'donatur'])->name('dashboard');
         Route::get('/dashboard', [DonaturController::class, 'index'])->name('dashboard');
-        Route::get('/donasi', [DonaturController::class, 'donasi'])->name('donasi');
+        //Route::get('/donasi', [DonaturController::class, 'donasi'])->name('donasi');
         Route::get('/profil', [DonaturController::class, 'profile'])->name('profile');
         Route::post('/profil', [DonaturController::class, 'update_profile']);
 });
