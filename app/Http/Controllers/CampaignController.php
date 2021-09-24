@@ -56,7 +56,7 @@ class CampaignController extends Controller
             ]);
 
             $validated['target'] = preg_replace('/[Rp. ]/','', $request->target);
-            $validated['banner'] = $request->has('banner') ? $request->banner_file : 'no-banner.jpg';
+            $validated['banner'] = $request->banner != NULL ? $request->banner_file : 'no-banner.jpg';
             
             Campaign::create($validated);
             
@@ -106,7 +106,7 @@ class CampaignController extends Controller
             ]);
 
             $validated['target'] = preg_replace('/[Rp. ]/','', $request->target);
-            $validated['banner'] = $request->has('banner') ? $request->banner_file : 'no-banner.jpg';
+            $validated['banner'] = $request->banner != NULL ? $request->banner_file : 'no-banner.jpg';
 
             Campaign::where('id', $id)->update($validated);
             
