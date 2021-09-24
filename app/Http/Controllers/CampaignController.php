@@ -149,6 +149,10 @@ class CampaignController extends Controller
 
     public function banner_image(Request $request)
     {
+        if ($request->has('existed')) {
+            unlink('img/banner/' . $request->existed);
+        }
+        
         $image = $request->image;
         $image_array_1 = explode(";", $image);
         $image_array_2 = explode(",", $image_array_1[1]);

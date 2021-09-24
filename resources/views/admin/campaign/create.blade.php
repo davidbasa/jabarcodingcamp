@@ -60,7 +60,7 @@
                         <div class="col-lg-9">
                             <img src="" alt="" id="cropped">
                             <input type="file" name="banner" class="image" id="uploaded_image">
-                            <input type="hidden" name="banner_file">
+                            <input type="hidden" name="banner_file" id="banner_file">
                             <span id="info" class="text-info" style="display: none">Refresh halaman jika ingin mengganti banner!</span>
                         </div>
                     </div>

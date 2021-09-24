@@ -247,10 +247,11 @@
                             var base64data = reader.result;
                             var urlnya = "{{route('banner.image')}}";
                             var slugnya = $('input[name=slug]').val();
+                            var existed = "<?= $edit->banner ?>";
                             $.ajax({
                                 url:urlnya,
                                 method:'POST',
-                                data:{image:base64data, slug:slugnya},
+                                data:{image:base64data, slug:slugnya, existed: existed},
                                 success:function(data) {
                                     $modal.modal('hide');
                                     $('#existed').remove();
