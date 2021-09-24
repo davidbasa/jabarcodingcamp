@@ -24,13 +24,13 @@
 					<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 					<li class="nav-header">Masterdata</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="{{ route('campaign.index') }}" class="nav-link">
 							<i class="fas fa-hand-holding-heart nav-icon"></i>
 							<p>Campaign</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="{{ route('categories.index') }}" class="nav-link">
 							<i class="fas fa-grip-horizontal nav-icon"></i>
 							<p>Kategori Campaign</p>
 						</a>

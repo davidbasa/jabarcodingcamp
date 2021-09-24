@@ -1,1 +1,1 @@
-@include('layouts.admin.template')
+@extends('layouts.admin.template')

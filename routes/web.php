@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::post('/login', [AuthController::class, 'authenticate'])->name('authentica
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::group(['prefix' => 'campaign', 'as' => 'campaign.'], function(){
-    Route::get("", [CampaignController::class, 'index'])->name('list');
+    Route::get("", [CampaignController::class, 'list'])->name('list');
     Route::get("{id}", [CampaignController::class, 'detail'])->name('detail');
 });
 
@@ -41,6 +42,9 @@ Route::group(['prefix' => 'donasi', 'as' => 'donation.'], function(){
 
 Route::prefix('/admin-area')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
+    Route::resource('/categories', CategoriesController::class);
+    Route::resource('/campaign', CampaignController::class);
+    
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/{user_id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{user_id}', [UserController::class, 'update'])->name('user.update');
@@ -63,3 +67,6 @@ Route::prefix('/donatur-area')
         Route::get('/profil', [DonaturController::class, 'profile'])->name('profile');
         Route::post('/profil', [DonaturController::class, 'update_profile']);
 });
+
+Route::post('/ckeditor-image-upload/description', [CampaignController::class, 'ckeditor_upload_image_description'])->name('ckeditor.image-upload.description')->middleware('auth');
+Route::post('/banner-image', [CampaignController::class, 'banner_image'])->name('banner.image')->middleware('auth');
