@@ -38,3 +38,9 @@ function indonesianDate($timestamp, $with_time = false)
         return $date[2] . ' ' . $month . ' ' . $date[0] . ' | ' . $split[1];
     }
 }
+
+function countRangeDayUntilToday($date)
+{
+    $interval = date_diff(date_create(date('Y-m-d')), date_create($date));
+    return $interval->format('%d');
+}

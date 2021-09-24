@@ -16,7 +16,7 @@
                     <a class="nav-link" href="{{route('donatur.profile')}}">Profil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('donatur.dashboard') }}">
+                    <a href="{{ route('logout') }}">
                         <button class="btn btn-danger btn-sm">Keluar</button>
                     </a>
                 </li>

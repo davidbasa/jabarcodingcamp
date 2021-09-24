@@ -20,11 +20,13 @@
                 </li>
                 <li class="nav-item">
                     @if(auth()->check())
-                        <a href="{{ route('donatur.dashboard') }}">
-                            <button class="btn btn-success btn-sm">User Area</button>
+                        <a href="{{ auth()->user()->role_id == 1 ? route('admin.dashboard') : route('donatur.dashboard') }}">
+                            <button class="btn btn-success btn-sm">{{ auth()->user()->role_id == 1 ? 'Admin' : 'User' }} Area</button>
                         </a>
                     @else
-                    <button class="btn btn-success btn-sm">Login/Daftar</button>
+                        <a href="{{ route('login') }}">
+                            <button class="btn btn-success btn-sm">Login/Daftar</button>
+                        </a>
                     @endif
                 </li>
             </ul>

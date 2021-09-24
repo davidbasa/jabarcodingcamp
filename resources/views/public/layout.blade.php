@@ -12,7 +12,7 @@
     @stack('styles')
 </head>
 <body>
-    
+    @include('sweetalert::alert')
     @include('public.parts.navbar')
 
     <main>
