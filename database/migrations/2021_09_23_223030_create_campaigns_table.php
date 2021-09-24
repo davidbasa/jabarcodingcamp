@@ -20,7 +20,7 @@ class CreateCampaignsTable extends Migration
             $table->bigInteger('target');
             $table->dateTimeTz('duration');
             $table->text('description');
-            $table->string('banner', 200)->default('no-banner.jpg')->nullable();
+            $table->string('banner', 200)->default('no-banner.jpg');
             $table->enum('status', ['Ongoing', 'Done']);
             $table->unsignedBigInteger('category_id');
             $table->timestamps();

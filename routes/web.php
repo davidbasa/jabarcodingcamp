@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Campaign;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
@@ -20,7 +21,7 @@ use App\Http\Controllers\CategoriesController;
 |
 */
 
-Route::view('/', 'public.landing')->name('index');
+Route::view('/', 'public.landing',['data' => Campaign::public_page() ])->name('index');
 
 Route::view('tentang-kami', 'public.aboutus')->name('aboutus');
 Route::view('hubungi-kami', 'public.contactus')->name('contactus');
@@ -63,7 +64,7 @@ Route::prefix('/donatur-area')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'donatur'])->name('dashboard');
         Route::get('/dashboard', [DonaturController::class, 'index'])->name('dashboard');
-        //Route::get('/donasi', [DonaturController::class, 'donasi'])->name('donasi');
+        Route::get('/donasi', [DonaturController::class, 'donasi'])->name('donasi');
         Route::get('/profil', [DonaturController::class, 'profile'])->name('profile');
         Route::post('/profil', [DonaturController::class, 'update_profile']);
 });
