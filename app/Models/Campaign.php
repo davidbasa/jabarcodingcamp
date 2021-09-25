@@ -18,6 +18,10 @@ class Campaign extends Model
         return $this->belongsTo(Categories::class, 'category_id');
     }
 
+    public static function slug ($slug) {
+        return self::where('slug', $slug)->first();
+    }
+
     static function public_page()
     {
         $get_campaign = static::where('status', 'Ongoing')->latest()->get();

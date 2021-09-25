@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\{
-    User
+    User,
+    Donation
 };
 
 class DonaturController extends Controller
@@ -48,5 +50,32 @@ class DonaturController extends Controller
         } catch(Exception $e) {
             return redirect()->back();
         }
+    }
+
+    public function donasi () {
+        
+    }
+
+    public function detail ($id) {
+        $donation = Donation::where([
+            'id' => $id,
+            'user_id' => auth()->user()->id
+        ])
+        ->with([
+            'payment',
+            'campaign'
+        ])
+        ->first();
+
+        if(!$donation) {
+            Alert::error('Error', 'Donasi tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('user.donation.detail', [
+            'donation' => $donation,
+            'campaign' => $donation->campaign,
+            'payment' => $donation->payment
+        ]);
     }
 }
