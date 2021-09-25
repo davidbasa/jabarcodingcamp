@@ -11,7 +11,7 @@ class Payment extends Model
 
     protected $guarded = ['id'];
     public $timestamps = false;
-    protected $table = 'payment';
+    protected $table = 'payment_methods';
 
     public function campaign()
     {

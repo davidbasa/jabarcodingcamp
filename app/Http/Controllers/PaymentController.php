@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Payment;
 
 class PaymentController extends Controller
 {
@@ -14,8 +16,15 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payment = DB::table('payment')->get();
-        return view('admin.payment.index', compact('payment'));
+        if(isAdmin()){
+            return view ('admin.payment.index', [
+                'payment' => Payment::get()
+            ]);
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
+            return redirect()->back();
+        }
+                //return view('admin.payment.index', compact('payment'));
     }
 
     /**
@@ -42,7 +51,7 @@ class PaymentController extends Controller
             'logo' => 'required',
             'account' => 'required',
         ]);
-        $query = DB::table('payment')->insert([
+        $query = DB::table('payment_methods')->insert([
             "name" => $request["name"],
             "logo" => $request["logo"],
             "account" => $request["account"],
@@ -70,7 +79,7 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        $payment = DB::table('payment')->first();
+        $payment = DB::table('payment_methods')->first();
         return view('admin.payment.edit', compact('payment'));
     }
 
@@ -88,8 +97,7 @@ class PaymentController extends Controller
             'logo' => 'required',
             'account' => 'required',
         ]);
-        $query = DB::table('payment')
-        ->where('id', $id)
+        $query = Payment::where('id', $id)
         ->update([
             "name" => $request["name"],
             "logo" => $request["logo"],
@@ -107,7 +115,15 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        $query = DB::table('payment')->where('id', $id)->delete();
-        return redirect(route('payment.index'));
+        if(isAdmin()){
+            $state = Payment::destroy($id);
+            $state ? Alert::success('Berhasil!', 'Data kategori campaign berhasil dihapus!') : Alert::success('Error!', 'Data kategori campaign gagal dihapus!');
+            
+            return redirect(route('payment.index'));
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
+            return redirect()->back();
+        }
+    
     }
 }

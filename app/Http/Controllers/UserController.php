@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use DB;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class UserController extends Controller
 {
     /**
@@ -79,7 +83,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(isAdmin()){
+            $validated = $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'role_id'=>'required',
+            ]);
+            
+            User::where('id', $id)->update($validated);
+
+            Alert::success('Berhasil!', 'Data kategori campaign berhasil diperbarui!');
+            return redirect(route('user.index'));
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -90,7 +108,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $query = DB::table('user')->where('id', $id)->delete();
+        $query = DB::table('users')->where('id', $id)->delete();
         return redirect('/admin-area/user');
     }
 }

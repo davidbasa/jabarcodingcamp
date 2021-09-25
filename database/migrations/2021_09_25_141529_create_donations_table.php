@@ -13,6 +13,7 @@ class CreateDonationsTable extends Migration
      */
     public function up()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id')
@@ -21,7 +22,7 @@ class CreateDonationsTable extends Migration
             $table->double('amount');
             
             $table->foreignId('payment_id')
-                ->references('id')->on('payment');
+                ->references('id')->on('payment_methods');
 
             $table->enum('status', [
                 'waiting_transfer', 'success', 'cancel'
@@ -36,6 +37,9 @@ class CreateDonationsTable extends Migration
 
             $table->timestamps();
         });
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 
     /**

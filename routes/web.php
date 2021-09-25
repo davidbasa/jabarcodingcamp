@@ -56,6 +56,8 @@ Route::prefix('/admin-area')->middleware('auth')->group(function () {
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/{user_id}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{user_id}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{user_id}', [UserController::class, 'destroy'])->name('user.delete');
+
 
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
