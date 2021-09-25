@@ -21,7 +21,7 @@
                 @foreach ($data[$i]['data'] as $item)
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card shadow-sm card-campaign">
-                            <img src="{{ asset('img/banner/' . $item->banner) }}" alt="{{ $item->name }}" width="354"/>
+                            <img src="{{ asset('img/banner/' . $item->banner) }}" alt="{{ $item->name }}" width="100%"/>
                             <div class="card-body">
                                 <h4 class="campaign-title">{{ $item->name }}</h4>
                                 <div class="progress my-3">
@@ -32,10 +32,10 @@
                                     <small>Sisa hari</small>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="total-donation">Rp 15.000.000</span>
+                                    <span class="total-donation">{{ formatRupiah($item->target) }}</span>
                                     <small class="text-muted">{{ countRangeDayUntilToday($item->duration) }} hari</small>
                                 </div>
-                                <a href="{{ route('campaign.detail', 'contoh') }}" class="d-grid mt-3">
+                                <a href="{{ route('campaign.detail', $item->slug) }}" class="d-grid mt-3">
                                     <button class="btn btn-success btn-sm text-center">
                                         Donasi Sekarang
                                     </button>

@@ -14,16 +14,27 @@ class CampaignController extends Controller
     }
 
     public function detail($slug) {
-        // $detail = Campaign::where('slug', $slug)->first();
+        $data = Campaign::where('slug', $slug)->first();
 
-        return view('public.campaign.detail');
+        if(!$data) {
+            Alert::error('Campaign tidak ditemukan', 'Reload halaman lalu silahkan coba lagi');
+            return redirect()->back();
+        }
+
+        return view('public.campaign.detail', compact([
+            'data'
+        ]));
     }
 
     public function index()
     {
         if(isAdmin()){
+            $data = Campaign::latest()
+                ->with('categories')
+                ->get();
+                
             return view ('admin.campaign.index', [
-                'data' => Campaign::latest()->get()
+                'data' => $data
             ]);
         } else {
             Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');

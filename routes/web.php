@@ -9,6 +9,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DonationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::group(['prefix' => 'campaign', 'as' => 'campaign.'], function(){
     Route::get("{id}", [CampaignController::class, 'detail'])->name('detail');
 });
 
-Route::group(['prefix' => 'donasi', 'as' => 'donation.'], function(){
+Route::group(['prefix' => 'donasi', 'as' => 'donation.', 'middleware' => 'auth'], function(){
     Route::get("{id}", [DonationController::class, 'create'])->name('create');
     Route::get("{id}/payment", [DonationController::class, 'payment'])->name('payment');
     Route::post("{id}", [DonationController::class, 'store'])->name('store');
@@ -65,6 +66,7 @@ Route::prefix('/donatur-area')
         Route::get('/dashboard', [DashboardController::class, 'donatur'])->name('dashboard');
         Route::get('/dashboard', [DonaturController::class, 'index'])->name('dashboard');
         Route::get('/donasi', [DonaturController::class, 'donasi'])->name('donasi');
+        Route::get('/donasi/{id}', [DonaturController::class, 'detail'])->name('donasi.detail');
         Route::get('/profil', [DonaturController::class, 'profile'])->name('profile');
         Route::post('/profil', [DonaturController::class, 'update_profile']);
 });
