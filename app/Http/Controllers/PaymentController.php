@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PaymentController extends Controller
 {
@@ -107,7 +109,16 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        $query = DB::table('payment')->where('id', $id)->delete();
-        return redirect(route('payment.index'));
+        
+        if(isAdmin()){
+            $state = payment::destroy($id);
+            $state ? Alert::success('Berhasil!', 'Data kategori campaign berhasil dihapus!') : Alert::success('Error!', 'Data kategori campaign gagal dihapus!');
+            
+            return redirect(route('payment.index'));
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
+            return redirect()->back();
+        }
+    
     }
 }
