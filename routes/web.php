@@ -30,6 +30,8 @@ Route::view('hubungi-kami', 'public.contactus')->name('contactus');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registered'])->name('registered');
 
 Route::group(['prefix' => 'campaign', 'as' => 'campaign.'], function(){
     Route::get("", [CampaignController::class, 'list'])->name('list');
