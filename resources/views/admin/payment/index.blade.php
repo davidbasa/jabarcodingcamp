@@ -12,42 +12,6 @@
 
 
 @section('content')
-
-<!-- <a href="/admin-area/payment/create" class="btn btn-primary my-2">Tambah</a>
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Metode Pembayaran</th>
-                <th scope="col">Logo</th>
-                <th scope="col">Akun</th>
-                <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($payment as $key=>$value)
-                    <tr>
-                        <td>{{$key + 1}}</th>
-                        <td>{{$value->name}}</td>
-                        <td>{{$value->logo}}</td>
-                        <td>{{$value->account}}</td>
-                        <td>
-                            <a href="/admin-area/payment/{{$value->id}}/edit" class="btn btn-primary">Edit</a>
-                            <form action="/admin-area/payment/{{$value->id}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" class="btn btn-danger my-1" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr colspan="3">
-                        <td>No data</td>
-                    </tr>  
-                @endforelse              
-            </tbody>
-        </table> -->
-
         <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -84,14 +48,14 @@
                                         <td>{{$value->logo}}</td>
                                         <td>{{$value->account}}</td>
                                         <td class="text-center">
-                                            <a href="/admin-area/payment/{{$value->id}}/edit"  class="btn btn-sm btn-warning btn-action mx-1" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Kategori Campaign">
+                                            <a href="/admin-area/payment/{{$value->id}}/edit"  class="btn btn-sm btn-warning btn-action mx-1" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Metode Pembayaran">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="/admin-area/payment/{{$value->id}}">
+                                            <form action="/admin-area/payment/{{$value->id}}" method="POST" id="form-delete-{{$value->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $value->id }}">
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="submit_delete({{$value->id}})" data-container="table" data-toggle="tooltip" data-placement="top" title="Hapus Kategori Campaign">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="submit_delete({{$value->id}})" data-container="table" data-toggle="tooltip" data-placement="top" title="Hapus Metode Pembayaran">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>

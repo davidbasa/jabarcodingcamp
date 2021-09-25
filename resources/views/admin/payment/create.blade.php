@@ -1,41 +1,54 @@
 @extends('layouts.admin.template')
+@push('page-header', 'Tambah Data Metode Pembayaran')
+
+
 @section('content')
-
-<div>
-    <h2>Tambah Metode Pembayaran</h2>
-        <form action="{{route('payment.store')}}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="name">Metode Pembayaran:</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="">
-                @error('name')
-                    <div class="alert alert-danger">
-                        {{ $message }}
-                    </div>
-                @enderror
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Tambah Data Kategori Campaign</h4>
             </div>
-            <div class="form-group">
-                <label for="logo">Logo :</label><br>
-                <input type="text" class="form-control" name="logo" id="logo" placeholder="">
-                @error('logo')
-                    <div class="alert alert-danger">
-                        {{ $message }}
+            <div class="card-body">
+                <form action="{{route('payment.store')}}" method="post" class="form-horizontal">
+                    @csrf
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label">Metode Pembayaran:</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="name" maxlength="50" placeholder="Metode Pembayaran" autocomplete="off" required>
+                        </div>
                     </div>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="account">Akun :</label>
-                <input type="text" class="form-control" name="account" id="account" placeholder="">
-                @error('akun')
-                    <div class="alert alert-danger">
-                        {{ $message }}
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label">Logo :</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="logo" maxlength="50" placeholder="Logo" autocomplete="off" required>
+                        </div>
                     </div>
-                @enderror
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label">Akun :</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="account" maxlength="50" placeholder="Akun" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <a href="{{ route('payment.index') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Simpan</button>
+                    </div>
+                </form>
             </div>
-
-            <button type="submit" class="btn btn-primary">Tambah</button>
-        </form>
-</div>
-
-
+        </div>
+        @if ($errors->any())
+            <div class="card">
+                <div class="card-body">
+                    <h5>Terdapat kesalahan: </h5>
+                    <div class="text-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </div>
 @endsection
