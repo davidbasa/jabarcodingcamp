@@ -43,7 +43,7 @@
 					</li>
 					<li class="nav-header">Transaksi</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">
+						<a href="{{ route('donation.admin') }}" class="nav-link">
 							<i class="fas fa-donate nav-icon"></i>
 							<p>Donasi Masuk</p>
 						</a>

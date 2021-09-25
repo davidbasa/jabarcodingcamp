@@ -32,7 +32,7 @@
                                     <small>Sisa hari</small>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="total-donation">{{ formatRupiah($item->target) }}</span>
+                                    <span class="total-donation">{{ formatRupiah($item->collected) }}</span>
                                     <small class="text-muted">{{ countRangeDayUntilToday($item->duration) }} hari</small>
                                 </div>
                                 <a href="{{ route('campaign.detail', $item->slug) }}" class="d-grid mt-3">

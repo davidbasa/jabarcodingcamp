@@ -34,6 +34,7 @@ class Campaign extends Model
             $result[$i]['data'] = array();
             foreach ($get_campaign as $campaign) {
                 if ($campaign->category_id == $categories[$i]) {
+                    $campaign['collected'] = Donation::where('status', 'success')->where('campaign_id', $campaign->id)->sum('amount');
                     array_push($result[$i]['data'], $campaign);
                     continue;
                 }

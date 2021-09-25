@@ -30,7 +30,7 @@
                                 @case('cancel')
                                 <span class="badge bg-danger">Dibatalkan</span>
                                 @break
-                                @case('waiting_transfer')
+                                @case('success')
                                 <span class="badge bg-success">Berhasil</span>
                                 @break
                             @endswitch
