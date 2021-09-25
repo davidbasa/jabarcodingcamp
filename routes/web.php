@@ -47,6 +47,7 @@ Route::group(['prefix' => 'donasi', 'as' => 'donation.', 'middleware' => 'auth']
 Route::prefix('/admin-area')->middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'admin'])->name('admin.dashboard');
     Route::resource('/categories', CategoriesController::class);
+    Route::put('/campaign/status', [CampaignController::class, 'status'])->name('campaign.status');
     Route::resource('/campaign', CampaignController::class);
     
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
