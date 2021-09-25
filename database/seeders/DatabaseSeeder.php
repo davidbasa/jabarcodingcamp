@@ -14,7 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            SeedTableUser::class
+            SeedTableUser::class,
+            SeedTableCategory::class,
+            SeedTablePayment::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

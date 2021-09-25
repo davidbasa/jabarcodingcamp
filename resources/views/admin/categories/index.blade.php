@@ -46,11 +46,11 @@
                                             <a href="{{ route('categories.edit', [$item->id]) }}"  class="btn btn-sm btn-warning btn-action mx-1" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Kategori Campaign">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('categories.destroy', [$item->id]) }}" method="POST" style="display: inline" id="form-delete">
+                                            <form action="{{ route('categories.destroy', [$item->id]) }}" method="POST" style="display: inline" id="form-delete-{{$item->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $item->id }}">
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="submit_delete()" data-container="table" data-toggle="tooltip" data-placement="top" title="Hapus Kategori Campaign">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="submit_delete({{$item->id}})" data-container="table" data-toggle="tooltip" data-placement="top" title="Hapus Kategori Campaign">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>
@@ -84,7 +84,7 @@
         $(function () {$("#table-categories").DataTable(); });
         $('[data-toggle="tooltip"]').tooltip();
 
-        function submit_delete(){
+        function submit_delete(category_id){
             event.preventDefault();
             Swal.fire({
                 width: 600,
@@ -98,7 +98,7 @@
                 cancelButtonText: 'Tidak'
                 }).then((result) => {
                     if (result.value == true) {
-                        $('#form-delete').submit();
+                        $(`#form-delete-${category_id}`).submit();
                     } else {
                         return false;
                     }

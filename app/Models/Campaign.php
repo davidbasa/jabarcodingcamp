@@ -23,6 +23,7 @@ class Campaign extends Model
         $get_campaign = static::where('status', 'Ongoing')->latest()->get();
         $categories = Categories::pluck('id')->toArray();
         
+        $result = [];
         for ($i = 0; $i < count($categories); $i++) { 
             $result[$i]['id'] = $categories[$i];
             $result[$i]['name'] = Categories::where('id', $categories[$i])->first()->name;
