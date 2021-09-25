@@ -29,8 +29,8 @@
             <div class="form-group">
                 <label for="role">Role :</label><br>
                 <select id="role" name="role">
-                    <option value="1">Admin</option>
-                    <option value="2">Donatur</option>
+                    <option value="1" {{ $users->role_id === 1 ? 'selected': "" }}>Admin</option>
+                    <option value="2" {{ $users->role_id === 2 ? 'selected': "" }}>Donatur</option>
                 </select>
             </div>
             <br>

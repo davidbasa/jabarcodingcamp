@@ -66,6 +66,7 @@ class UserController extends Controller
         ->join('users', 'users.role_id', '=', 'roles.id')
         ->select('users.*', 'roles.name as rn')
         ->first();
+        
         return view('admin.user.edit', compact(['users', 'roles']));
     }
 
