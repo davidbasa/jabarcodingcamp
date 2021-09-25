@@ -36,8 +36,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                    <label class="col-lg-3 col-form-label" for="role">Role :</label><br>
-                        <select class="col-lg-5" id="role" name="role">
+                    <label class="col-lg-3 col-form-label" for="role">Role :</label>
+                        <select class="col-lg-5 form-control" id="role" name="role">
                             <option value="1" {{ $users->role_id == 1 ? 'selected="selected"' : '' }}>Admin</option>
                             <option value="2" {{ $users->role_id == 2 ? 'selected="selected"' : '' }}>Donatur</option>
                         </select>

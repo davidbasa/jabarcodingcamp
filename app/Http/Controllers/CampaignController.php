@@ -132,9 +132,32 @@ class CampaignController extends Controller
     public function destroy($id)
     {
         if(isAdmin()){
+            $find = Campaign::where('id', $id)->first();
+            if ($find->banner != 'no-banner.jpg') {
+                unlink('img/banner/' . $find->banner);
+            }
+            
             $state = Campaign::destroy($id);
             $state ? Alert::success('Berhasil!', 'Data campaign berhasil dihapus!') : Alert::success('Error!', 'Data kategori campaign gagal dihapus!');
             
+            return redirect(route('campaign.index'));
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
+            return redirect()->back();
+        }
+    }
+
+    public function status(Request $request)
+    {
+        if(isAdmin()){
+            $request->validate([
+                'id' => 'required',
+                'status' => 'required',
+            ]);
+
+            Campaign::where('id', $request->id)->update(['status' => ($request->status == 'Ongoing' ? 'Done' : 'Ongoing')]);
+            
+            Alert::success('Berhasil!', 'Campaign berhasil ' . ($request->status == 'Ongoing' ? 'diselesaikan' : 'dijalankan') . '!');
             return redirect(route('campaign.index'));
         } else {
             Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');

@@ -8,7 +8,7 @@ function isAdmin()
 }
 
 function formatRupiah($number){ 
-    $result =  'Rp ' . number_format($number,0, ',' , '.'); 
+    $result =  'Rp. ' . number_format($number,0, ',' , '.'); 
     return $result; 
 }
 

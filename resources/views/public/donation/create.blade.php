@@ -1,5 +1,19 @@
 @extends('public.layout')
 
+@push('styles')
+    <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance:textfield;
+        }
+    </style>
+@endpush
+
 @section('content')
 <br><br><br>
 <div class="container my-4">
