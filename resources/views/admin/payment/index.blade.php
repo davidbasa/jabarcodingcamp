@@ -51,7 +51,7 @@
                                             <a href="/admin-area/payment/{{$value->id}}/edit"  class="btn btn-sm btn-warning btn-action mx-1" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Metode Pembayaran">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="/admin-area/payment/{{$value->id}}" method="POST" id="form-delete-{{$value->id}}">
+                                            <form action="/admin-area/payment/{{$value->id}}" method="POST" id="form-delete-{{$value->id}}" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $value->id }}">
