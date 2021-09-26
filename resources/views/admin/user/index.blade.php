@@ -15,7 +15,9 @@
 @section('content')
         <div class="col-lg-12">
         <div class="card">
-
+            <div class="card-header">
+                <h4 class="card-title">Manajemen User</h4>
+            </div>
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="offset-lg-6"></div>
@@ -43,7 +45,7 @@
                                             <a href="/admin-area/user/{{$value->id}}/edit"  class="btn btn-sm btn-warning btn-action mx-1" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Data User">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="/admin-area/user/{{$value->id}}" method="POST" id="form-delete-{{$value->id}}">
+                                            <form action="/admin-area/user/{{$value->id}}" method="POST" id="form-delete-{{$value->id}}" style="display: inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $value->id }}">

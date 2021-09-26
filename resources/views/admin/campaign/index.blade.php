@@ -37,7 +37,7 @@
                                     <th>Target Donasi</th>
                                     <th>Target Tanggal</th>
                                     <th>Kategori Donasi</th>
-                                    <th class="text-center" style="width: 16%;"><i class="fas fa-cog"></i></th>
+                                    <th class="text-center" style="width: 20%;"><i class="fas fa-cog"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,20 +47,29 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ formatRupiah($item->target) }}</td>
                                         <td>{{ indonesianDate($item->duration) }}</td>
-                                        <td>{{ $item->categories->name }}</td>
+                                        <td>{{ $item->category->name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('campaign.show', [$item->id]) }}" class="btn btn-info btn-sm" data-container="table" data-toggle="tooltip" data-placement="top" title="Detail Campaign" data-toggle="tooltip" data-placement="top">
                                                 <i class="far fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('campaign.edit', [$item->id]) }}"  class="btn btn-sm btn-warning mx-1" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Campaign">
+                                            <a href="{{ route('campaign.edit', [$item->id]) }}"  class="btn btn-sm btn-warning" data-container="table" data-toggle="tooltip" data-placement="top" title="Edit Campaign">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('campaign.destroy', [$item->id]) }}" method="POST" style="display: inline" id="form-delete">
+                                            <form action="{{ route('campaign.destroy', [$item->id]) }}" method="POST" style="display: inline" id="form-delete-{{$item->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input type="hidden" name="id" value="{{ $item->id }}">
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="submit_delete()" data-container="table" data-toggle="tooltip" data-placement="top" title="Hapus Campaign">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="submit_delete({{$item->id}})" data-container="table" data-toggle="tooltip" data-placement="top" title="Hapus Campaign">
                                                     <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('campaign.status') }}" method="POST" style="display: inline" id="form-status-{{ $item->id }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <input type="hidden" name="status" value="{{ $item->status }}">
+                                                <button type="submit" class="btn {{ $item->status == 'Ongoing' ? 'btn-success' : 'btn-secondary'}} btn-sm" onclick="submit_status({{ $item->id }}, '{{ $item->status }}')" data-container="table" data-toggle="tooltip" data-placement="top" title="{{ $item->status == 'Ongoing' ? 'Selesaikan' : 'Jalankan'}} Campaign">
+                                                    <i class="fas {{ $item->status == 'Ongoing' ? 'fa-check' : 'fa-play'}}"></i>
                                                 </button>
                                             </form>
                                         </td>
@@ -90,10 +99,14 @@
     <!-- Script Tambahan -->
     <script src="{{ asset('plugins/sweetalert2/js/sweetalert2.all.min.js') }}"></script>
     <script type="text/javascript">
-        $(function () {$("#table-campaign").DataTable(); });
+        $('#table-campaign').DataTable({
+            columnDefs: [
+                { orderable: false, targets: 5 },
+            ]
+        });
         $('[data-toggle="tooltip"]').tooltip();
 
-        function submit_delete(){
+        function submit_delete(campaign_id){
             event.preventDefault();
             Swal.fire({
                 width: 600,
@@ -107,7 +120,29 @@
                 cancelButtonText: 'Tidak'
                 }).then((result) => {
                     if (result.value == true) {
-                        $('#form-delete').submit();
+                        $(`#form-delete-${campaign_id}`).submit();
+                    } else {
+                        return false;
+                    }
+                }
+            );
+        }
+
+        function submit_status(campaign_id, status){
+            event.preventDefault();
+            Swal.fire({
+                width: 600,
+                title: 'Konfirmasi perubahan status',
+                text: 'Anda yakin ingin ' + (status == 'Ongoing' ? 'menyelesaikan' : 'menjalankan') + ' Campaign?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+                }).then((result) => {
+                    if (result.value == true) {
+                        $(`#form-status-${campaign_id}`).submit();
                     } else {
                         return false;
                     }

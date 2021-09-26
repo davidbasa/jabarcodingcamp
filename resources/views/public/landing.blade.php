@@ -9,43 +9,35 @@
     </div>
 </div>
 
-@for ($i = 0; $i < count($data); $i++)
-    @if (count($data[$i]['data']) > 0)
-        <div class="container my-4">
-            <h3 class="campaign-category">
-                <a href="/category/1">
-                    Donasi {{ $data[$i]['name'] }} <i class="fa-solid fa-chevron-right"></i>
-                </a>
-            </h3>
-            <div class="row g-4">
-                @foreach ($data[$i]['data'] as $item)
-                    <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card shadow-sm card-campaign">
-                            <img src="{{ asset('img/banner/' . $item->banner) }}" alt="{{ $item->name }}" width="100%"/>
-                            <div class="card-body">
-                                <h4 class="campaign-title">{{ $item->name }}</h4>
-                                <div class="progress my-3">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small>Terkumpul</small>
-                                    <small>Sisa hari</small>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="total-donation">{{ formatRupiah($item->target) }}</span>
-                                    <small class="text-muted">{{ countRangeDayUntilToday($item->duration) }} hari</small>
-                                </div>
-                                <a href="{{ route('campaign.detail', $item->slug) }}" class="d-grid mt-3">
-                                    <button class="btn btn-success btn-sm text-center">
-                                        Donasi Sekarang
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+<div class="container my-4">
+    <div class="row g-4">
+        @foreach ($data as $item)
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card shadow-sm card-campaign">
+                <img src="{{ asset('img/banner/' . $item->banner) }}" alt="{{ $item->name }}" width="100%"/>
+                <div class="card-body">
+                    <h4 class="campaign-title">{{ $item->name }}</h4>
+                    <small>{!!campaign_category_label($item->category->id, $item->category->name) !!}</small>
+                    <div class="progress my-3">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$item->percentage}}%" aria-valuenow="{{$item->percentage}}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                @endforeach
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small>Terkumpul</small>
+                        <small>Sisa hari</small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="total-donation">{{ formatRupiah($item->fund_collected) }}</span>
+                        <small class="text-muted">{{ countRangeDayUntilToday($item->duration) }} hari</small>
+                    </div>
+                    <a href="{{ route('campaign.detail', $item->slug) }}" class="d-grid mt-3">
+                        <button class="btn btn-success btn-sm text-center">
+                            Donasi Sekarang
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
-    @endif
-@endfor
+        @endforeach
+    </div>
+</div>
 @endsection

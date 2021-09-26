@@ -39,7 +39,7 @@ class DonationController extends Controller
 
         $request->validate([
             'amount' => 'required|numeric|min:1',
-            'payment'=> 'required|exists:payment,id'
+            'payment'=> 'required|exists:payment_methods,id'
         ]);
 
         try {
@@ -59,6 +59,36 @@ class DonationController extends Controller
 
         } catch (\Exception $e) {
             Alert::error('Gagal membuat donasi', 'Silahkan coba lagi');
+            return redirect()->back();
+        }
+    }
+
+    public function admin()
+    {
+        if(isAdmin()){
+            return view ('admin.donation.index', [
+                'data' => Donation::latest()->get()
+            ]);
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
+            return redirect()->back();
+        }
+    }
+
+    public function status(Request $request)
+    {
+        if(isAdmin()){
+            $request->validate([
+                'id' => 'required',
+                'status' => 'required',
+            ]);
+
+            Donation::where('id', $request->id)->update(['status' => 'success']);
+            
+            Alert::success('Berhasil!', 'Donasi berhasil diterima!');
+            return redirect(route('donation.admin'));
+        } else {
+            Alert::error('403 - Unauthorized', 'Anda tidak memiliki kewenangan untuk mengakses halaman ini!');
             return redirect()->back();
         }
     }

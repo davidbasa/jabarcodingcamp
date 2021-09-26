@@ -36,8 +36,8 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                    <label class="col-lg-3 col-form-label" for="role">Role :</label><br>
-                        <select class="col-lg-5" id="role" name="role">
+                    <label class="col-lg-3 col-form-label" for="role">Role :</label>
+                        <select class="col-lg-5 form-control" id="role" name="role_id" disabled>
                             <option value="1" {{ $users->role_id == 1 ? 'selected="selected"' : '' }}>Admin</option>
                             <option value="2" {{ $users->role_id == 2 ? 'selected="selected"' : '' }}>Donatur</option>
                         </select>
@@ -68,6 +68,7 @@
             $('#btn-edit').on('click', function () {
                 $("input[name=name]").attr('readonly', false);
                 $("input[name=email]").attr('readonly', false);
+                $("select[name=role_id]").attr('disabled', false);
                 $('#btn-edit').hide();
                 $('#btn-reset').show();
                 $('#btn-submit').attr('disabled', false);
@@ -77,6 +78,8 @@
                 $("input[name=name]").val('{{ $users->name }}');
                 $("input[name=email]").attr('readonly', true);
                 $("input[name=email]").val('{{ $users->email }}');
+                $("select[name=role_id]").attr('disabled', true);
+                $("select[name=role_id]").val('{{ $users->role_id }}').change();
                 $('#btn-reset').hide();
                 $('#btn-edit').show();
                 $('#btn-submit').attr('disabled', true);

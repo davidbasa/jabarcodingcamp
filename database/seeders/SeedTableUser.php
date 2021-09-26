@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use DB, Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class SeedTableUser extends Seeder
 {
@@ -21,7 +22,6 @@ class SeedTableUser extends Seeder
                 'name' => 'Super Admin',
                 'email' => 'admin@jbb.id',
                 'password' => Hash::make('adminjbb'),
-                'email_verified_at' => NULL,
                 'role_id' => 1,
                 'created_at' => date('Y-m-d H:i:s')
             ], [
@@ -29,7 +29,6 @@ class SeedTableUser extends Seeder
                 'name' => 'Contoh Donatur',
                 'email' => 'donatur@jbb.id',
                 'password' => Hash::make('donaturjbb'),
-                'email_verified_at' => NULL,
                 'role_id' => 2,
                 'created_at' => date('Y-m-d H:i:s')
             ]

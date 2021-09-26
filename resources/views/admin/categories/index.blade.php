@@ -81,7 +81,11 @@
     <!-- Script Tambahan -->
     <script src="{{ asset('plugins/sweetalert2/js/sweetalert2.all.min.js') }}"></script>
     <script type="text/javascript">
-        $(function () {$("#table-categories").DataTable(); });
+        $('#table-categories').DataTable({
+            columnDefs: [
+                { orderable: false, targets: 2 },
+            ]
+        });
         $('[data-toggle="tooltip"]').tooltip();
 
         function submit_delete(category_id){

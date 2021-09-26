@@ -6,7 +6,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Tambah Data Kategori Campaign</h4>
+                <h4 class="card-title">Tambah Data Metode Pembayaran</h4>
             </div>
             <div class="card-body">
                 <form action="{{route('payment.store')}}" method="post" class="form-horizontal">

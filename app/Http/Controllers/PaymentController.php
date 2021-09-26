@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Payment;
 
@@ -117,7 +117,7 @@ class PaymentController extends Controller
     {
         if(isAdmin()){
             $state = Payment::destroy($id);
-            $state ? Alert::success('Berhasil!', 'Data kategori campaign berhasil dihapus!') : Alert::success('Error!', 'Data kategori campaign gagal dihapus!');
+            $state ? Alert::success('Berhasil!', 'Data metode pembayaran berhasil dihapus!') : Alert::success('Error!', 'Data metode pembayaran gagal dihapus!');
             
             return redirect(route('payment.index'));
         } else {

@@ -16,6 +16,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index () {
-        return view('public.landing',['data' => Campaign::public_page() ]);
+        $list = Campaign::listCampaign()->get();
+        return view('public.landing',['data' => $list ]);
     }
 }
