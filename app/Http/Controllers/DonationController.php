@@ -39,7 +39,7 @@ class DonationController extends Controller
 
         $request->validate([
             'amount' => 'required|numeric|min:1',
-            'payment'=> 'required|exists:payment,id'
+            'payment'=> 'required|exists:payment_methods,id'
         ]);
 
         try {

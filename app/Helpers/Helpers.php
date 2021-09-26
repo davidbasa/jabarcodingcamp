@@ -44,3 +44,43 @@ function countRangeDayUntilToday($date)
     $interval = date_diff(date_create(date('Y-m-d')), date_create($date));
     return $interval->format('%d');
 }
+
+function campaign_category_label($id, $name = null) {
+    switch($id) {
+        case 1:
+            return '<span class="badge bg-danger">'.$name.'</span>';
+        break;
+        case 2:
+            return '<span class="badge bg-warning">'.$name.'</span>';
+        break;
+        case 3:
+            return '<span class="badge bg-info">'.$name.'</span>';
+        break;
+        case 4:
+            return '<span class="badge bg-success">'.$name.'</span>';
+        break;
+        default: 
+            return '<span class="badge bg-success">'.$name.'</span>';
+    }
+}
+
+function donation_status_label($status) {
+    switch($status) {
+        case 'cancel':
+            return '<span class="badge bg-danger">Cancel</span>';
+        break;
+        case 'waiting_transfer':
+            return '<span class="badge bg-warning">Menunggu Pembayaran</span>';
+        break;
+        case 'success':
+            return '<span class="badge bg-success">Berhasil</span>';
+        break;
+        default: 
+            return '<span class="badge bg-info">Unknown</span>';
+    }
+}
+
+function fund_percentage($target, $collected) {
+    $percentage = $collected / ($target / 100);
+    return $percentage > 100 ? 100 : $percentage;
+}

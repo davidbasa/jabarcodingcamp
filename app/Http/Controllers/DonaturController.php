@@ -13,7 +13,23 @@ use App\Models\{
 class DonaturController extends Controller
 {
     public function index() {
-        return view('user.dashboard');
+
+        $user_id = auth()->user()->id;
+
+        $campaign_attended = Donation::where(['status' => 'success', 'user_id' => $user_id])->count();
+        $last_donation = Donation::with([
+            'campaign',
+            'campaign.category'
+        ])
+            ->where('user_id', $user_id)
+            ->latest()
+            ->limit(3)
+            ->get();
+
+        return view('user.dashboard', compact([
+            'campaign_attended',
+            'last_donation'
+        ]));
     }
 
     public function profile () {
@@ -31,6 +47,7 @@ class DonaturController extends Controller
         $usedEmail = User::where('email', $request->email)->first();
 
         if($usedEmail && $usedEmail->id != $user->id) {
+            Alert::error('Error', 'Email sudah digunakan');
             return redirect()->back();
         }
 
@@ -46,6 +63,7 @@ class DonaturController extends Controller
 
             $ok = $user->update($data);
 
+            Alert::success('Berhasil!', 'Informasi akun sudah diperbarui');
             return redirect()->back();
         } catch(Exception $e) {
             return redirect()->back();
@@ -53,7 +71,19 @@ class DonaturController extends Controller
     }
 
     public function donasi () {
-        
+        $user_id = auth()->user()->id;
+
+        $last_donation = Donation::with([
+            'campaign',
+            'campaign.category'
+        ])
+            ->where('user_id', $user_id)
+            ->latest()
+            ->get();
+
+        return view('user.donation.list', compact([
+            'last_donation'
+        ]));
     }
 
     public function detail ($id) {

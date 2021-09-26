@@ -47,7 +47,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ formatRupiah($item->target) }}</td>
                                         <td>{{ indonesianDate($item->duration) }}</td>
-                                        <td>{{ $item->categories->name }}</td>
+                                        <td>{{ $item->category->name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('campaign.show', [$item->id]) }}" class="btn btn-info btn-sm" data-container="table" data-toggle="tooltip" data-placement="top" title="Detail Campaign" data-toggle="tooltip" data-placement="top">
                                                 <i class="far fa-eye"></i>

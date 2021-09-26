@@ -5,7 +5,7 @@
 <div class="position-relative overflow-hidden bg-light jbb-navbar mt-5">
     <div class="row px-auto">
         <div class="col-md-3 offset-md-3 text-center d-flex p-5">
-            <h1 class="fw-normal m-auto">Hallo {{auth()->user()->name}}</h1>
+            <h1 class="fw-normal m-auto">Riwayat Donasi Saya</h1>
         </div>
         <div class="col-md-3">
             <center>
@@ -19,16 +19,7 @@
     </div>
 </div>
 
-<div class="container mt-5">
-    <p>
-        Terimakasih telah bergabung dengan <b><i>Jabar Bangkit Bersama</i></b>, anda telah berpartisipasi dalam <b>{{$campaign_attended}} program donasi</b> untuk warga jawa barat.
-    </p>
-</div>
-
 <div class="container my-4">
-    <h3 class="campaign-category">
-        Donasi Terakhir 
-    </h3>
 
     <div class="row g-4">
         @foreach($last_donation as $item)

@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaign;
-use App\Models\Categories;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use App\Models\{
+    Campaign,
+    Categories,
+    Donation
+};
 
 class CampaignController extends Controller
 {
     public function list (Request $request) {
-        return view('public.campaign.list');
+        $list = Campaign::listCampaign()->get();
+
+        return view('public.campaign.list', compact([
+            'list'
+        ]));
     }
 
     public function detail($slug) {
@@ -21,8 +29,16 @@ class CampaignController extends Controller
             return redirect()->back();
         }
 
+        $donations = Donation::with('user')
+        ->latest()
+        ->where([
+            'campaign_id' => $data->id,
+            'status' => 'success'
+        ])->limit(5)->get();
+
         return view('public.campaign.detail', compact([
-            'data'
+            'data',
+            'donations'
         ]));
     }
 
@@ -30,7 +46,7 @@ class CampaignController extends Controller
     {
         if(isAdmin()){
             $data = Campaign::latest()
-                ->with('categories')
+                ->with('category')
                 ->get();
                 
             return view ('admin.campaign.index', [
