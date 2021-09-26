@@ -40,7 +40,7 @@ class Campaign extends Model
     }
 
     public function getCollectedAttribute() {
-        $collected = Donation::where([
+        $collected = Donation::select('amount')->where([
             'status' => 'success',
             'campaign_id' => $this->attributes['id']
         ])->sum('amount');
