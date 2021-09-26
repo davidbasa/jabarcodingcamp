@@ -1,16 +1,16 @@
 # Final Project
 
 ## Kelompok 17
------
+
 ## Anggota Kelompok
------
+
 
 * Anggota 1 : Aughy Vikri Jamuri (aughyvikrii@gmail.com)
 * Anggota 2 : David Basa Halomoan (davidhutabarat47@gmail.com)
 * Anggota 3 : Muhammad Esa Yusriana (mesayusriana12@gmail.com)
 
 ## Pembagian Tugas
------
+
 * Aughy Vikri Jamuri
 1. 
 
@@ -27,17 +27,17 @@
 6. Sebagian Landing Page
 
 ## Tema Project
------
+
 Tema : Fundraising
 
 Deskripsi : Aplikasi yang dibuat dinamakan "Jabar Bangkit Bersama", merupakan sebuah aplikasi yang berfungsi dalam mengumpulkan donasi untuk membantu masyarakat yang berada di Jawa Barat.
 
 ## Gambar ERD (Entity Relational Database)
------
+
 <!-- ![ERD](public/img/10820.jpg "ERD") -->
 
 ## Library 
------
+
 * [Laravel Sweetalert](https://github.com/realrashid/sweet-alert)
 * [DataTables](https://github.com/DataTables/DataTables)
 * [CKEditor4](https://github.com/ckeditor/ckeditor4)
@@ -45,7 +45,7 @@ Deskripsi : Aplikasi yang dibuat dinamakan "Jabar Bangkit Bersama", merupakan se
 * [CropperJS](https://github.com/fengyuanchen/cropperjs)
 
 ## Link Video dan Aplikasi
------
+
 Link Video Demo Aplikasi : https://link-youtubenya
 
 Link Deploy Aplikasi : https://jbb.permata.dev
