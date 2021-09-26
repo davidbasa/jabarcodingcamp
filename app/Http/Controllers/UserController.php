@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Donation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -109,6 +110,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         if(isAdmin()){
+            $count = Donation::where('user_id', $id)->count();
+            if($count > 0 ){
+                Alert::error('Gagal menghapus user!', 'User tidak dapat dihapus karena user sudah pernah berdonasi!');
+                return redirect(route('user.index'));
+            }
             $query = DB::table('users')->where('id', $id)->delete();
             $query ? Alert::success('Berhasil!', 'Data user berhasil dihapus!') : Alert::success('Error!', 'Data user gagal dihapus!');
             
