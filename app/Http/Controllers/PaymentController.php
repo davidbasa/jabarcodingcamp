@@ -79,7 +79,7 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        $payment = DB::table('payment_methods')->first();
+        $payment = DB::table('payment_methods')->where('id', $id)->first();
         return view('admin.payment.edit', compact('payment'));
     }
 
