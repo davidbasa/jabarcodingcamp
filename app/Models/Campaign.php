@@ -29,14 +29,14 @@ class Campaign extends Model
     }
 
     public function scopeListCampaign($query) {
-        return $query->selectRaw("campaigns.*, SUM(donations.amount) as fund_collected")
+        return $query->selectRaw("campaigns.id, campaigns.slug, campaigns.name, campaigns.target, campaigns.duration, campaigns.description, campaigns.banner, campaigns.status, campaigns.category_id, campaigns.created_at, campaigns.updated_at, SUM(donations.amount) as fund_collected")
             ->from('campaigns')
             ->join('categories', 'categories.id', 'campaigns.category_id')
             ->leftjoin('donations', function($join) {
                 $join->on('donations.campaign_id','campaigns.id')
                     ->on('donations.status', DB::Raw("'success'"));
             })
-            ->groupBy('campaigns.id');
+            ->groupBy(DB::Raw('campaigns.id, campaigns.slug, campaigns.name, campaigns.target, campaigns.duration, campaigns.description, campaigns.banner, campaigns.status, campaigns.category_id, campaigns.created_at, campaigns.updated_at'));
     }
 
     public function getCollectedAttribute() {
