@@ -57,9 +57,3 @@ Admin: admin@jbb.id : adminjbb
 * [CKEditor4](https://github.com/ckeditor/ckeditor4)
 * [Bootstrap Datepicker](https://github.com/uxsolutions/bootstrap-datepicker)
 * [CropperJS](https://github.com/fengyuanchen/cropperjs)
-
-## Link Video dan Aplikasi
-
-Link Video Demo Aplikasi : https://link-youtubenya
-
-Link Deploy Aplikasi : https://jbb.permata.dev
