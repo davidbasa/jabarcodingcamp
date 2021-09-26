@@ -27,8 +27,7 @@
 2. CRUD Campaign
 3. CRUD Kategori Campaign
 4. Transaksi Penerimaan Donasi
-5. Templating Admin
-6. Sebagian Landing Page
+5. Template Admin
 
 ## Tema Project
 
@@ -37,7 +36,7 @@ Tema : Fundraising
 Deskripsi : Aplikasi yang dibuat dinamakan "Jabar Bangkit Bersama", merupakan sebuah aplikasi yang berfungsi dalam mengumpulkan donasi untuk membantu masyarakat yang berada di Jawa Barat.
 
 ## Demo
-Link Aplikasi: [https://jbb.permata.dedv](https://jbb.permata.dev)
+Link Aplikasi: [https://jbb.permata.dev](https://jbb.permata.dev)
 
 Video ERD: [https://www.youtube.com/watch?v=dvlt1qU8w6k](https://www.youtube.com/watch?v=dvlt1qU8w6k)
 
