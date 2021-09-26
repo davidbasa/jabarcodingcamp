@@ -42,7 +42,7 @@ function indonesianDate($timestamp, $with_time = false)
 function countRangeDayUntilToday($date)
 {
     $interval = date_diff(date_create(date('Y-m-d')), date_create($date));
-    return $interval->format('%d');
+    return $interval->days;
 }
 
 function campaign_category_label($id, $name = null) {
