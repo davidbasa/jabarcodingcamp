@@ -154,7 +154,7 @@ class CampaignController extends Controller
             }
             
             $state = Campaign::destroy($id);
-            $state ? Alert::success('Berhasil!', 'Data campaign berhasil dihapus!') : Alert::success('Error!', 'Data kategori campaign gagal dihapus!');
+            $state ? Alert::success('Berhasil!', 'Data campaign berhasil dihapus!') : Alert::error('Error!', 'Data kategori campaign gagal dihapus!');
             
             return redirect(route('campaign.index'));
         } else {

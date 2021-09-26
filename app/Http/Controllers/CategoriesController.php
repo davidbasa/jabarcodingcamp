@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -78,8 +79,13 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         if(isAdmin()){
+            $count = Campaign::where('category_id', $id)->count();
+            if($count > 0 ){
+                Alert::error('Gagal menghapus kategori!', 'Kategori tidak dapat dihapus karena masih terdapat campaign yang berjalan pada kategori ini!');
+                return redirect(route('categories.index'));
+            }
             $state = Categories::destroy($id);
-            $state ? Alert::success('Berhasil!', 'Data kategori campaign berhasil dihapus!') : Alert::success('Error!', 'Data kategori campaign gagal dihapus!');
+            $state ? Alert::success('Berhasil!', 'Data kategori campaign berhasil dihapus!') : Alert::error('Error!', 'Data kategori campaign gagal dihapus!');
             
             return redirect(route('categories.index'));
         } else {
